@@ -1,11 +1,11 @@
 import argparse
-from Lights import Lights
+from led_solve import Lights
 import re
 import os
 import requests
 
 
-def main():
+def solve_led():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--input", "-i", help="Parameter required to provide input to the program", action="store_true")
@@ -27,7 +27,7 @@ def main():
         with open(filePath) as fin:
             L = int(fin.readline())
             if L > 0:
-                _lights = Lights(L)
+                _lights = Lights.Lights(L)
             regex = re.compile(
                 ".*(turn on|turn off|switch)\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*through\s*([+-]?\d+)\s*,\s*([+-]?\d+).*")
             for i in fin.readlines():
@@ -52,4 +52,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    solve_led()

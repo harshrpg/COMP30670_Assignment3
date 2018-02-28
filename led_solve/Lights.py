@@ -43,4 +43,4 @@ class Lights(object):
                     l1+=1
                 l2+=1
 
-        return(self.__onCount,self.__offCount)
+        return("Leds ON: {}, Leds OFF: {}".format(self.__onCount,self.__offCount))

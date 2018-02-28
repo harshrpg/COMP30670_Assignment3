@@ -37,7 +37,7 @@ setup(
     packages=find_packages(include=['led_solve']),
     entry_points={
         'console_scripts': [
-            'led_solve=led_solve.cli:main',
+            'led_solve=led_solve.solve_led:solve_led',
         ],
     },
     include_package_data=True,
