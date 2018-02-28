@@ -1,6 +1,7 @@
 import argparse
 from Lights import Lights
 import re
+import os
 import requests
 
 
@@ -15,6 +16,10 @@ def main():
         count = ""
         if filePath.startswith("http:"):
             response = requests.get(filePath)
+            try:
+                os.remove('input.txt')
+            except OSError:
+                pass
             with open('input.txt', 'w') as fout:
                 fout.writelines(response.text)
             fout.close()
@@ -40,6 +45,10 @@ def main():
                     else:
                         continue
         print(count)
+        try:
+            os.remove('input.txt')
+        except OSError:
+            pass
 
 
 if __name__ == "__main__":

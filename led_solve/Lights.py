@@ -10,30 +10,37 @@ class Lights(object):
     def runCmd(self, method, l1, l2, l3, l4):
         """Toggle the state of lights"""
         if method == "turn on":
-            for r in range(l1,l3+1):
-                for c in range(l2,l4+1):
-                    if self.__grid[r][c]==False:
-                        self.__grid[r][c]=True
+           while l2 <= l4+1:
+                while l1 <= l3+1:
+                    if l2 < self.__L and l1 < self.__L and self.__grid[l2][l1] == False:
+                        self.__grid[l2][l1]=True
                         self.__onCount+=1
                         self.__offCount-=1
+                    l1+=1
+                l2+=1
 
         elif method == "turn off":
-            for r in range(l1,l3+1):
-                for c in range(l2,l4+1):
-                    if self.__grid[r][c] == True:
-                        self.__grid[r][c]=False
+            while l2 <= l4+1:
+                while l1 <= l3+1:
+                    if l2 < self.__L and l1 < self.__L and self.__grid[l2][l1] == True :
+                        self.__grid[l2][l1]=False
                         self.__offCount+=1
                         self.__onCount-=1
+                    l1+=1
+                l2+=1
 
         elif method == "switch":
-            for r in range(l1,l3+1):
-                for c in range(l2,l4+1):
-                    if self.__grid[r][c] == True:
-                        self.__grid[r][c]=False
-                        self.__offCount+=1
-                        self.__onCount-=1
-                    else:
-                        self.__grid[r][c]=False
-                        self.__onCount+=1
-                        self.__offCount-=1
+            while l2<=l4+1:
+                while l1<=l3+1:
+                    if l2 < self.__L and l1 < self.__L and self.__grid[l2][l1] == False:
+                        self.__grid[l2][l1] = True
+                        self.__onCount += 1
+                        self.__offCount -= 1
+                    elif l2 < self.__L and l1 < self.__L and self.__grid[l2][l1] == True:
+                        self.__grid[l2][l1] = False
+                        self.__offCount +=1
+                        self.__onCount -= 1
+                    l1+=1
+                l2+=1
+
         return(self.__onCount,self.__offCount)
