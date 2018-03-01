@@ -10,37 +10,31 @@ class Lights(object):
     def runCmd(self, method, l1, l2, l3, l4):
         """Toggle the state of lights"""
         if method == "turn on":
-           while l2 <= l4+1:
-                while l1 <= l3+1:
-                    if l2 < self.__L and l1 < self.__L and self.__grid[l2][l1] == False:
-                        self.__grid[l2][l1]=True
+            for r in range(l2, l4+1):
+                for c in range(l1, l3+1):
+                    if self.__grid[r][c]==False:
+                        self.__grid[r][c]=True
                         self.__onCount+=1
                         self.__offCount-=1
-                    l1+=1
-                l2+=1
-
         elif method == "turn off":
-            while l2 <= l4+1:
-                while l1 <= l3+1:
-                    if l2 < self.__L and l1 < self.__L and self.__grid[l2][l1] == True :
-                        self.__grid[l2][l1]=False
+            for r in range(l2, l4+1):
+                for c in range(l1, l3+1):
+                    if self.__grid[r][c] == True :
+                        self.__grid[r][c]=False
                         self.__offCount+=1
                         self.__onCount-=1
-                    l1+=1
-                l2+=1
 
         elif method == "switch":
-            while l2<=l4+1:
-                while l1<=l3+1:
-                    if l2 < self.__L and l1 < self.__L and self.__grid[l2][l1] == False:
-                        self.__grid[l2][l1] = True
+            print(l1,l2,l3,l4)
+            for r in range(l2,l4+1):
+                for c in range(l1,l3+1):
+                    if self.__grid[r][c] == False:
+                        self.__grid[r][c] = True
                         self.__onCount += 1
                         self.__offCount -= 1
-                    elif l2 < self.__L and l1 < self.__L and self.__grid[l2][l1] == True:
-                        self.__grid[l2][l1] = False
+                    elif self.__grid[r][c] == True:
+                        self.__grid[r][c] = False
                         self.__offCount +=1
                         self.__onCount -= 1
-                    l1+=1
-                l2+=1
 
         return("Leds ON: {}, Leds OFF: {}".format(self.__onCount,self.__offCount))
